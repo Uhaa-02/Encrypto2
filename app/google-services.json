@@ -1,13 +1,14 @@
 {
   "project_info": {
-    "project_number": "379245637071",
-    "project_id": "encrypto2",
-    "storage_bucket": "encrypto2.firebasestorage.app"
+    "project_number": "284437952067",
+    "firebase_url": "https://encrypto-b22cd-default-rtdb.firebaseio.com",
+    "project_id": "encrypto-b22cd",
+    "storage_bucket": "encrypto-b22cd.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:379245637071:android:1b89f9a8f672d7ee0d36ba",
+        "mobilesdk_app_id": "1:284437952067:android:0c460d5088e305c75646f6",
         "android_client_info": {
           "package_name": "com.example.encrypto"
         }
@@ -15,7 +16,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCMcGvdO8OZytYN-fXNscmqSvB71rL_q-U"
+          "current_key": "AIzaSyBjPrKlJq4R0CmwF364x_6eVjYdtOIDy0s"
         }
       ],
       "services": {

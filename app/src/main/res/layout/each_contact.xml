@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center">
+
+
+    <ImageView
+        android:id="@+id/Profile"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/profile_img"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="20dp"
+        android:layout_weight="5">
+        <TextView
+            android:id="@+id/Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Harish"
+            android:textSize="20dp"/>
+
+        <TextView
+            android:id="@+id/Message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello, Harish"
+            android:layout_marginTop="5dp"
+            android:textColor="#6B6A6A"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/Time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="top"
+        android:textSize="16dp"
+        android:layout_marginTop="11dp"
+        android:text="6:22"/>
+
+
+
+
+
+
+
+</LinearLayout>

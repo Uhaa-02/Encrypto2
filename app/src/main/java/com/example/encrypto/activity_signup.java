@@ -7,26 +7,35 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class activity_signup extends AppCompatActivity {
 
-    EditText userName,email,password;
+    TextInputEditText email,password;
     String userNameStr,emailStr,passwordStr;
     Button signUpBtn;
-    TextView loginRedirect;
+    LinearLayout loginRedirect;
+    DatabaseReference reference;
 
 
     @Override
@@ -42,13 +51,12 @@ public class activity_signup extends AppCompatActivity {
 
 
         SharedPreferences sharedPreferences = getSharedPreferences("Users",MODE_PRIVATE);
-        if(sharedPreferences.getBoolean("IsLoggedIn", false)) startActivity(new Intent(activity_signup.this,MainActivity.class));
+        if(sharedPreferences.getBoolean("IsLoggedIn", false)) startActivity(new Intent(activity_signup.this,HomeScreen.class));
 
 
 
-        userName = findViewById(R.id.usernameInput);
-        email = findViewById(R.id.emailInput);
-        password = findViewById(R.id.passwordInput);
+        email = findViewById(R.id.userEmailInput);
+        password = findViewById(R.id.userPasswordInput);
 
 
         signUpBtn = findViewById(R.id.signupButton);
@@ -61,7 +69,7 @@ public class activity_signup extends AppCompatActivity {
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                userNameStr = userName.getText().toString();
+                userNameStr = email.getText().toString().substring(0,email.getText().toString().length()-10).toUpperCase();
                 emailStr = email.getText().toString();
                 passwordStr = password.getText().toString();
 
@@ -78,7 +86,24 @@ public class activity_signup extends AppCompatActivity {
                                     editor.putString("userEmail", emailStr);
                                     editor.apply();
 
-                                    startActivity(new Intent(activity_signup.this, MainActivity.class));
+                                    reference = FirebaseDatabase.getInstance().getReference("Users");
+                                    reference.child(userNameStr).child("Name").setValue(userNameStr).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            Toast.makeText(activity_signup.this,"successs",Toast.LENGTH_SHORT).show();
+
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(activity_signup.this,"failure",Toast.LENGTH_SHORT).show();
+
+                                        }
+                                    });
+
+
+
+                                    startActivity(new Intent(activity_signup.this, HomeScreen.class));
                                     finish();
                                 } else {
                                     Log.d("error", "Failure : " + task.getException());

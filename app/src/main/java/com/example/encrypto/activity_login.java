@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,23 +16,24 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 
 public class activity_login extends AppCompatActivity {
 
-    EditText email,password;
+    TextInputEditText email,password;
     String emailStr,passwordStr;
     Button logInBtn;
-    TextView signUpRedirect;
+    LinearLayout signUpRedirect;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main2), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
@@ -41,8 +43,8 @@ public class activity_login extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("Users",MODE_PRIVATE);
         FirebaseAuth auth = FirebaseAuth.getInstance();
 
-        email = findViewById(R.id.emailInput);
-        password = findViewById(R.id.passwordInput);
+        email = findViewById(R.id.userEmailInput);
+        password = findViewById(R.id.userPasswordInput);
 
         logInBtn = findViewById(R.id.loginButton);
         signUpRedirect = findViewById(R.id.signupRedirect);
@@ -66,7 +68,7 @@ public class activity_login extends AppCompatActivity {
                                 editor.putBoolean("IsLoggedIn",true);
                                 editor.apply();
 
-                                startActivity(new Intent(activity_login.this,MainActivity.class));
+                                startActivity(new Intent(activity_login.this,HomeScreen.class));
                                 finish();
                             }
                         }).addOnFailureListener(e -> {
