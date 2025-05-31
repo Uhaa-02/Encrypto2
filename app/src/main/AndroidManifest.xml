@@ -13,30 +13,36 @@
         android:theme="@style/Theme.EncrypTo"
         tools:targetApi="31">
         <activity
-            android:name=".ChatPage"
-            android:windowSoftInputMode="adjustResize"
+            android:name=".ActivityForFragments"
             android:exported="false" />
+        <activity
+            android:name=".ChatPage"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".AddNewFriend"
             android:exported="false" />
         <activity
-            android:name=".HomeScreen"
-            android:exported="false" />
-        <activity
             android:name=".activity_signup"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".activity_login"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true" />
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

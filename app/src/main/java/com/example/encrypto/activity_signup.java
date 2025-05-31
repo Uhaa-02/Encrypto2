@@ -50,16 +50,13 @@ public class activity_signup extends AppCompatActivity {
         });
 
 
-        SharedPreferences sharedPreferences = getSharedPreferences("Users",MODE_PRIVATE);
-        if(sharedPreferences.getBoolean("IsLoggedIn", false)) startActivity(new Intent(activity_signup.this,HomeScreen.class));
-
 
 
         email = findViewById(R.id.userEmailInput);
         password = findViewById(R.id.userPasswordInput);
 
 
-        signUpBtn = findViewById(R.id.signupButton);
+        signUpBtn = findViewById(R.id.signUpButton);
         loginRedirect = findViewById(R.id.loginRedirect);
 
         loginRedirect.setOnClickListener(View -> {
@@ -80,6 +77,7 @@ public class activity_signup extends AppCompatActivity {
                             auth.createUserWithEmailAndPassword(emailStr, passwordStr).addOnCompleteListener(activity_signup.this, task -> {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(activity_signup.this, "Registration Success", Toast.LENGTH_SHORT).show();
+                                    SharedPreferences sharedPreferences = getSharedPreferences("Users",MODE_PRIVATE);
                                     SharedPreferences.Editor editor = sharedPreferences.edit();
                                     editor.putBoolean("IsLoggedIn", true);
                                     editor.putString("userName",userNameStr);
@@ -102,8 +100,7 @@ public class activity_signup extends AppCompatActivity {
                                     });
 
 
-
-                                    startActivity(new Intent(activity_signup.this, HomeScreen.class));
+                                    startActivity(new Intent(activity_signup.this, ActivityForFragments.class));
                                     finish();
                                 } else {
                                     Log.d("error", "Failure : " + task.getException());

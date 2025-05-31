@@ -1,85 +1,152 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:fitsSystemWindows="true">
 
-    <!-- Header -->
+
     <LinearLayout
-        android:id="@+id/linearLayout2"
+        android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#6BEF6F"
+
         android:orientation="horizontal"
-        android:padding="10dp">
 
-        <ImageView
-            android:id="@+id/Profile"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:src="@drawable/profile_img" />
+        android:layout_marginTop="@dimen/_1sdp"
+        android:layout_alignParentStart="true"
 
+        android:background="@drawable/bg_profile"
+        android:layout_alignParentTop="true">
+        <!-- Header -->
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_weight="0.5"
+            android:padding="@dimen/_7sdp">
+
+
+            <ImageButton
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:src="@drawable/baseline_arrow_back_24" />
+
+            <ImageView
+                android:id="@+id/Profile"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:src="@drawable/profile_img" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_7sdp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/Name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Name"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_17ssp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:text="Online"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:orientation="vertical">
-
-            <TextView
+            android:layout_weight="1"
+            android:background="@drawable/white_bg_for_chat_page"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:backgroundTint="@color/white"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:orientation="horizontal">
+            <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Name"
-                android:textSize="20sp" />
-
-            <TextView
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:src="@drawable/video_call"/>
+            <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Online" />
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:src="@drawable/call_lgog_removebg_preview"/>
         </LinearLayout>
+
+
     </LinearLayout>
 
-    <!-- RecyclerView between header and input -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:clipToPadding="false"
-        android:paddingBottom="80dp" />
-
-    <!-- Input bar -->
     <LinearLayout
-        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="30dp"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/linearLayout3"
+        android:background="@drawable/chat_page_bg"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/_1sdp"
+        android:layout_marginBottom="@dimen/_2sdp">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
+        <!-- RecyclerView between header and input -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clipToPadding="false"
+            android:paddingBottom="80dp" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/Msg"
+        <!-- Input bar -->
+        <LinearLayout
+            android:id="@+id/bottomLayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/bottom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Message" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_weight="1"
+                app:boxBackgroundMode="none"
+                app:hintEnabled="false"
+                android:background="@drawable/white_bg_for_chat_page">
 
-        <ImageButton
-            android:id="@+id/sendBtn"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginStart="20dp"
-            android:background="@android:color/transparent"
-            android:scaleType="fitCenter"
-            android:src="@drawable/baseline_cancel_schedule_send_24"
-            app:tint="#0A4BD1" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/Msg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_12ssp"
+                    android:hint="Message" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageButton
+                android:id="@+id/sendBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:background="@drawable/white_bg_for_chat_page"
+                android:scaleType="fitCenter"
+                android:src="@drawable/send_btn"
+                app:tint="#0A4BD1" />
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

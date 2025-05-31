@@ -3,6 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
+    android:paddingBottom="@dimen/_20sdp"
+    android:layout_centerHorizontal="true"
     android:gravity="center">
 
 
@@ -18,31 +20,36 @@
         android:orientation="vertical"
         android:layout_marginStart="20dp"
         android:layout_weight="5">
+
         <TextView
             android:id="@+id/Name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/allerta"
             android:text="Harish"
-            android:textSize="20dp"/>
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/Message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello, Harish"
             android:layout_marginTop="5dp"
-            android:textColor="#6B6A6A"/>
+            android:fontFamily="@font/actor"
+            android:text="Hello, Harish"
+            android:textColor="#6B6A6A"
+            android:textSize="@dimen/_12sdp" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/Time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_gravity="top"
-        android:textSize="16dp"
-        android:layout_marginTop="11dp"
-        android:text="6:22"/>
+        android:layout_gravity="center"
+        android:fontFamily="@font/actor"
+        android:text="06:22 AM"
+
+        android:textColor="#787676"
+        android:textSize="16dp" />
 
 
 

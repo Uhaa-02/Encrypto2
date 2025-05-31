@@ -48,7 +48,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHo
     public void onBindViewHolder(@NonNull ContactsAdapter.ViewHolder holder, int position) {
         holder.name.setText(arrayList.get(position).name);
         holder.msg.setText(arrayList.get(position).msg);
-        holder.time.setText(arrayList.get(position).time);
+        holder.time.setText("0"+arrayList.get(position).time+" AM");
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,7 +88,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHo
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()) {
                                             Toast.makeText(context, "Added to Friend Succesfully", Toast.LENGTH_SHORT).show();
-                                            context.startActivity(new Intent(context, HomeScreen.class));
+                                            context.startActivity(new Intent(context, ActivityForFragments.class));
                                         }
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {

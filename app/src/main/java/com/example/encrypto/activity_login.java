@@ -65,10 +65,11 @@ public class activity_login extends AppCompatActivity {
 
                             if(task.isSuccessful()){
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putString("userName",emailStr.substring(0,emailStr.length()-10).toUpperCase());
                                 editor.putBoolean("IsLoggedIn",true);
                                 editor.apply();
 
-                                startActivity(new Intent(activity_login.this,HomeScreen.class));
+                                startActivity(new Intent(activity_login.this,ActivityForFragments.class));
                                 finish();
                             }
                         }).addOnFailureListener(e -> {

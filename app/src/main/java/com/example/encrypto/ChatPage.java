@@ -7,7 +7,11 @@ import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -48,22 +52,6 @@ public class ChatPage extends AppCompatActivity {
         });
 
 
-        final View rootView = findViewById(android.R.id.content);
-        rootView.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
-            Rect r = new Rect();
-            rootView.getWindowVisibleDisplayFrame(r);
-            int screenHeight = rootView.getRootView().getHeight();
-            int keypadHeight = screenHeight - r.bottom;
-            if (keypadHeight > screenHeight * 0.15) {
-                // keyboard is opened
-                Log.d("Keyboard", "Keyboard is visible");
-            } else {
-                Log.d("Keyboard", "Keyboard is hidden");
-            }
-        });
-
-
-
         Intent i = getIntent();
         if(i != null){
             frndName = i.getStringExtra("FrndName");
@@ -72,6 +60,34 @@ public class ChatPage extends AppCompatActivity {
         ImageButton sendBtn = findViewById(R.id.sendBtn);
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         TextInputEditText msg = findViewById(R.id.Msg);
+        TextView name = findViewById(R.id.Name);
+        ImageButton back = findViewById(R.id.back);
+        LinearLayout bottom = findViewById(R.id.bottomLayout);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
+        RelativeLayout relativeLayout = findViewById(R.id.main);
+
+        relativeLayout.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
+            Rect r = new Rect();
+            relativeLayout.getWindowVisibleDisplayFrame(r);
+            int screenHeight = relativeLayout.getRootView().getHeight();
+
+            int keypadHeight = screenHeight - r.bottom;
+
+            if (keypadHeight > screenHeight * 0.15) {
+                // Keyboard is opened
+                bottom.animate().translationY(-keypadHeight).setDuration(200).start();
+            } else {
+                // Keyboard is closed
+                bottom.animate().translationY(0).setDuration(200).start();
+            }
+        });
+        name.setText(frndName);
 
 
         SharedPreferences sharedPreferences = getSharedPreferences("Users",MODE_PRIVATE);
